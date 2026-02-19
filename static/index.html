@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Portal Files</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__title">&#x1F4C2; Portal Files</h1>
+      <div class="header__actions">
+        <button id="upload-btn" class="header__action" title="Upload Files">&#x1F4E4;</button>
+        <button id="newfile-btn" class="header__action" title="New Text File">&#x1F4DD;</button>
+        <button id="newfolder-btn" class="header__action" title="New Folder">&#x1F4C1;</button>
+        <button id="tetris-btn" class="header__action" title="Play Tetris">&#x1F3AE;</button>
+      </div>
+    </header>
+
+    <nav id="breadcrumb" class="breadcrumb"></nav>
+
+    <div id="error-message" class="error-message" style="display: none"></div>
+
+    <div id="loading" class="loading" style="display: none">
+      <div class="loading__spinner"></div>
+      <p>Loading&hellip;</p>
+    </div>
+
+    <main id="file-list" class="file-list"></main>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+name: portal_files
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - flask>=3.0
+  - flask-cors>=5.0
+  - ruff

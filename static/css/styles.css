@@ -1,0 +1,354 @@
+/* ==========================================================================
+   Portal Files — Touch-friendly responsive stylesheet
+   ==========================================================================
+   Uses BEM-like naming and -webkit- prefixes for Safari on iOS 10.
+   No CSS Grid — flexbox only.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Reset & Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f5f5f5;
+  /* leave space at the bottom for the debug toggle button */
+  padding-bottom: 80px;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.header {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 16px 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.header__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.header__action {
+  background: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 1.4rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.header__action:active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.header__actions {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   Breadcrumb
+   -------------------------------------------------------------------------- */
+
+.breadcrumb {
+  background-color: #fff;
+  padding: 12px 20px;
+  border-bottom: 1px solid #ddd;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.breadcrumb-item {
+  color: #3498db;
+  text-decoration: none;
+  padding: 4px 2px;
+  font-size: 0.95rem;
+}
+
+.breadcrumb-item:active {
+  color: #2980b9;
+  background-color: #eef6fc;
+  border-radius: 4px;
+}
+
+.breadcrumb-separator {
+  color: #999;
+  margin: 0 2px;
+}
+
+.breadcrumb-current {
+  color: #666;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   Loading spinner
+   -------------------------------------------------------------------------- */
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+.loading__spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #eee;
+  border-top-color: #3498db;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  -webkit-animation: spin 0.8s linear infinite;
+  animation: spin 0.8s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Error message
+   -------------------------------------------------------------------------- */
+
+.error-message {
+  background-color: #fee;
+  color: #c0392b;
+  padding: 16px 20px;
+  border-bottom: 1px solid #fcc;
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   Empty directory notice
+   -------------------------------------------------------------------------- */
+
+.empty-message {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   File list
+   -------------------------------------------------------------------------- */
+
+.file-list {
+  background-color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   File item (row)
+   -------------------------------------------------------------------------- */
+
+.file-item {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid #eee;
+  min-height: 56px; /* Apple-recommended minimum tap target */
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+}
+
+.file-item:active {
+  background-color: #f0f0f0;
+}
+
+.file-item--directory {
+  cursor: pointer;
+}
+
+.file-item--directory:active {
+  background-color: #eef6fc;
+}
+
+.file-item__icon {
+  font-size: 1.5rem;
+  margin-right: 16px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+}
+
+.file-item__info {
+  -webkit-flex: 1;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.file-item__name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-item--directory .file-item__name {
+  color: #2c3e50;
+}
+
+.file-item__meta {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 2px;
+}
+
+.file-item__size {
+  margin-right: 12px;
+}
+
+.file-item__actions {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  margin-left: 12px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+
+.file-item__actions .btn {
+  margin-left: 8px;
+}
+
+.file-item__actions .btn:first-child {
+  margin-left: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.25rem;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+  background-color: #e0e0e0;
+}
+
+.btn--download {
+  border-color: #3498db;
+  background-color: #eef6fc;
+}
+
+.btn--download:active {
+  background-color: #d4e9f7;
+}
+
+.btn--vlc {
+  border-color: #e67e22;
+  background-color: #fef3e8;
+}
+
+.btn--vlc:active {
+  background-color: #fce0c5;
+}
+
+.btn--edit {
+  border-color: #8e44ad;
+  background-color: #f5eef8;
+}
+
+.btn--edit:active {
+  background-color: #e8d5f0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — small screens
+   -------------------------------------------------------------------------- */
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 12px 16px;
+  }
+
+  .breadcrumb {
+    padding: 10px 16px;
+  }
+
+  .file-item {
+    padding: 12px 16px;
+  }
+
+  .file-item__icon {
+    margin-right: 12px;
+  }
+}

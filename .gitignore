@@ -1,0 +1,31 @@
+# Node
+node_modules/
+dist/
+
+# Built JS
+static/js/app.js
+static/js/app.js.map
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbbs.db
+
+# Environment
+.env
+
+files/*
+!files/.gitkeep
