@@ -5,6 +5,11 @@
 
 A local file server with a web-based UI for browsing, uploading, editing, and downloading files. **Specifically designed for legacy browsers** including Safari on iPad 4 (iOS 10.3.3) and Internet Explorer 11.
 
+<!-- markdownlint-disable MD033 -->
+<p align="center">
+    <img src="docs/file_browser.png" alt="Local file explorer" width="50%">
+</p>
+
 ## Features
 
 - 📂 **File Browser** — Navigate directories with breadcrumb UI
