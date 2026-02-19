@@ -105,12 +105,12 @@ ruff format server/ run.py
 
 The server can be configured via environment variables or CLI arguments:
 
-| Variable            | CLI Flag  | Default   | Description               |
-| ------------------- | --------- | --------- | ------------------------- |
-| `PORTAL_FILES_ROOT` | `--root`  | `./files` | Root directory to serve   |
-| `PORTAL_HOST`       | `--host`  | `0.0.0.0` | Host to bind to           |
-| `PORTAL_PORT`       | `--port`  | `8081`    | Port to listen on         |
-| `PORTAL_DEBUG`      | `--debug` | `true`    | Enable debug mode         |
+| Variable            | CLI Flag  | Default   | Description             |
+| ------------------- | --------- | --------- | ----------------------- |
+| `PORTAL_FILES_ROOT` | `--root`  | `./files` | Root directory to serve |
+| `PORTAL_HOST`       | `--host`  | `0.0.0.0` | Host to bind to         |
+| `PORTAL_PORT`       | `--port`  | `8081`    | Port to listen on       |
+| `PORTAL_DEBUG`      | `--debug` | `true`    | Enable debug mode       |
 
 ## Architecture
 
@@ -145,18 +145,18 @@ The server can be configured via environment variables or CLI arguments:
 
 ### API Endpoints
 
-| Method   | Endpoint                     | Description                                        |
-| -------- | ---------------------------- | -------------------------------------------------- |
-| `GET`    | `/`                          | Serves the single-page application                 |
-| `GET`    | `/api/files?path=<path>`     | Lists directory contents as JSON                   |
-| `GET`    | `/api/download/<path>`       | Downloads a file                                   |
-| `GET`    | `/api/read/<path>`           | Reads a text file (JSON response)                  |
-| `PUT`    | `/api/save/<path>`           | Saves a text file                                  |
-| `POST`   | `/api/upload?path=<path>`    | Uploads one or more files                          |
-| `POST`   | `/api/create-file`           | Creates a new empty file                           |
-| `POST`   | `/api/create-directory`      | Creates a new directory                            |
-| `DELETE` | `/api/delete/<path>`         | Deletes a file or empty directory                  |
-| `POST`   | `/api/log`                   | Receives client-side error logs                    |
+| Method   | Endpoint                  | Description                        |
+| -------- | ------------------------- | ---------------------------------- |
+| `GET`    | `/`                       | Serves the single-page application |
+| `GET`    | `/api/files?path=<path>`  | Lists directory contents as JSON   |
+| `GET`    | `/api/download/<path>`    | Downloads a file                   |
+| `GET`    | `/api/read/<path>`        | Reads a text file (JSON response)  |
+| `PUT`    | `/api/save/<path>`        | Saves a text file                  |
+| `POST`   | `/api/upload?path=<path>` | Uploads one or more files          |
+| `POST`   | `/api/create-file`        | Creates a new empty file           |
+| `POST`   | `/api/create-directory`   | Creates a new directory            |
+| `DELETE` | `/api/delete/<path>`      | Deletes a file or empty directory  |
+| `POST`   | `/api/log`                | Receives client-side error logs    |
 
 ## Browser Compatibility
 
@@ -181,10 +181,6 @@ All debug messages are also sent to the server and logged to the terminal, allow
 
 ## Progressive Web App (PWA)
 
-This application can be installed as a PWA on modern browsers. However, **PWA requires HTTPS** to function properly. For local development:
-
-1. **Set up a named domain** in your local DNS (e.g., `portal.local`)
-2. **Use a reverse proxy** (nginx, Caddy) with a self-signed certificate or Let's Encrypt
-3. **Update the manifest.json** with your domain and generate icons (192x192, 512x512)
+This application can be installed as a PWA on modern browsers. However, **PWA requires HTTPS** to function properly.
 
 Without HTTPS, the app will still work as a standard web page but won't have offline capabilities or installability.
