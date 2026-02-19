@@ -2,7 +2,7 @@
 
 import os
 
-from flask import Flask, send_from_directory
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 
 from server.config import Config
@@ -21,6 +21,15 @@ def create_app(config: object | None = None) -> Flask:
         app.config.from_object(Config)
 
     CORS(app)
+
+    @app.after_request
+    def add_no_cache_headers(response):
+        """Prevent IE11 from caching API responses."""
+        if request.path.startswith("/api/"):
+            response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+            response.headers["Pragma"] = "no-cache"
+            response.headers["Expires"] = "0"
+        return response
 
     # Register blueprints
     from server.routes.api import api_bp

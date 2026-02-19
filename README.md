@@ -176,7 +176,7 @@ The frontend is compiled to ES5 and uses only APIs available in Safari on iOS 10
 
 ## Debug Panel
 
-A floating debug button (🐛) appears in the bottom-right corner of the page. Tapping it reveals an on-screen console that shows:
+A floating debug button (☢) appears in the bottom-right corner of the page. Tapping it reveals an on-screen console that shows:
 
 - Client-side errors and warnings
 - Navigation events

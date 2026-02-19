@@ -137,8 +137,8 @@ function buildOverlay(): HTMLElement {
     '<div class="viewer-wrap">' +
     '<div class="viewer-toolbar">' +
     '<div id="viewer-title" class="viewer-title"></div>' +
-    '<button id="viewer-preview-toggle" class="viewer-btn viewer-btn--preview" style="display:none;" title="Toggle Preview">&#x1F440; Preview</button>' +
-    '<button id="viewer-close" class="viewer-btn viewer-btn--close">&#x274C; Close</button>' +
+    '<button id="viewer-preview-toggle" class="viewer-btn viewer-btn--preview" style="display:none;" title="Toggle Preview">&#x25CE; Preview</button>' +
+    '<button id="viewer-close" class="viewer-btn viewer-btn--close">&#x2716; Close</button>' +
     '</div>' +
     '<div class="viewer-body">' +
     '<textarea id="viewer-textarea" class="viewer-textarea" readonly spellcheck="false"></textarea>' +

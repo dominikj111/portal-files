@@ -14,12 +14,12 @@
   </head>
   <body>
     <header class="header">
-      <h1 class="header__title">&#x1F4C2; Portal Files</h1>
+      <h1 class="header__title">Portal Files</h1>
       <div class="header__actions">
-        <button id="upload-btn" class="header__action" title="Upload Files">&#x1F4E4;</button>
-        <button id="newfile-btn" class="header__action" title="New Text File">&#x1F4DD;</button>
-        <button id="newfolder-btn" class="header__action" title="New Folder">&#x1F4C1;</button>
-        <button id="tetris-btn" class="header__action" title="Play Tetris">&#x1F3AE;</button>
+        <button id="upload-btn" class="header__action" title="Upload Files">&#x2191;</button>
+        <button id="newfile-btn" class="header__action" title="New Text File">&#x2261;</button>
+        <button id="newfolder-btn" class="header__action" title="New Folder">&#x253C;</button>
+        <button id="tetris-btn" class="header__action" title="Play Tetris">&#x265E;</button>
       </div>
     </header>
 
@@ -34,6 +34,107 @@
 
     <main id="file-list" class="file-list"></main>
 
+    <!--
+      Minimal Promise polyfill for IE11.
+      Only loaded when the browser lacks native Promise support.
+      Based on the Promise/A+ spec — supports .then(), .catch(), resolve/reject.
+    -->
+    <script>
+      if (typeof Promise === 'undefined') {
+        (function (global) {
+          function noop() {}
+          var PENDING = 0, FULFILLED = 1, REJECTED = 2;
+
+          function MiniPromise(executor) {
+            var self = this;
+            self._state = PENDING;
+            self._value = undefined;
+            self._handlers = [];
+            try { executor(resolve, reject); } catch (e) { reject(e); }
+            function resolve(val) { transition(self, FULFILLED, val); }
+            function reject(reason) { transition(self, REJECTED, reason); }
+          }
+
+          function transition(self, state, value) {
+            if (self._state !== PENDING) return;
+            // Resolve with a thenable
+            if (value && (typeof value === 'object' || typeof value === 'function')) {
+              var then;
+              try { then = value.then; } catch (e) { transition(self, REJECTED, e); return; }
+              if (typeof then === 'function') {
+                var called = false;
+                try {
+                  then.call(value,
+                    function (v) { if (!called) { called = true; transition(self, FULFILLED, v); } },
+                    function (r) { if (!called) { called = true; transition(self, REJECTED, r); } }
+                  );
+                } catch (e) { if (!called) { transition(self, REJECTED, e); } }
+                return;
+              }
+            }
+            self._state = state;
+            self._value = value;
+            scheduleHandlers(self);
+          }
+
+          function scheduleHandlers(self) {
+            for (var i = 0; i < self._handlers.length; i++) {
+              handle(self, self._handlers[i]);
+            }
+            self._handlers = [];
+          }
+
+          function handle(self, handler) {
+            if (self._state === PENDING) { self._handlers.push(handler); return; }
+            setTimeout(function () {
+              var cb = self._state === FULFILLED ? handler.onFulfilled : handler.onRejected;
+              if (typeof cb !== 'function') {
+                (self._state === FULFILLED ? handler.resolve : handler.reject)(self._value);
+                return;
+              }
+              try { handler.resolve(cb(self._value)); }
+              catch (e) { handler.reject(e); }
+            }, 0);
+          }
+
+          MiniPromise.prototype.then = function (onFulfilled, onRejected) {
+            var self = this;
+            return new MiniPromise(function (resolve, reject) {
+              handle(self, { onFulfilled: onFulfilled, onRejected: onRejected, resolve: resolve, reject: reject });
+            });
+          };
+
+          MiniPromise.prototype['catch'] = function (onRejected) {
+            return this.then(undefined, onRejected);
+          };
+
+          MiniPromise.resolve = function (val) {
+            return new MiniPromise(function (resolve) { resolve(val); });
+          };
+
+          MiniPromise.reject = function (reason) {
+            return new MiniPromise(function (_, reject) { reject(reason); });
+          };
+
+          MiniPromise.all = function (promises) {
+            return new MiniPromise(function (resolve, reject) {
+              var results = [], remaining = promises.length;
+              if (remaining === 0) { resolve(results); return; }
+              for (var i = 0; i < promises.length; i++) {
+                (function (idx) {
+                  MiniPromise.resolve(promises[idx]).then(function (val) {
+                    results[idx] = val;
+                    if (--remaining === 0) resolve(results);
+                  }, reject);
+                })(i);
+              }
+            });
+          };
+
+          global.Promise = MiniPromise;
+        })(typeof window !== 'undefined' ? window : this);
+      }
+    </script>
     <script src="/static/js/app.js"></script>
   </body>
 </html>

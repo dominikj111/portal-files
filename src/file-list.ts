@@ -58,7 +58,7 @@ function createUpItem(parentPath: string): HTMLElement {
   const item = document.createElement('div');
   item.className = 'file-item file-item--directory';
   item.innerHTML =
-    '<div class="file-item__icon">\u2B06\uFE0F</div>' + // ⬆️
+    '<div class="file-item__icon">\u2191</div>' + // ↑
     '<div class="file-item__info">' +
     '<div class="file-item__name">Parent Directory</div>' +
     '<div class="file-item__meta">Go up one level</div>' +
@@ -89,12 +89,12 @@ function createFileItem(entry: FileEntry, currentPath: string): HTMLElement {
     actionsHtml +=
       '<a href="' +
       escapeHtml(downloadUrl) +
-      '" class="btn btn--download" title="Download">\u2B07\uFE0F</a>'; // ⬇️
+      '" class="btn btn--download" title="Download">\u2193</a>'; // ↓
 
     if (entry.editable) {
       actionsHtml +=
-        '<span class="btn btn--view" title="View">\uD83D\uDC41\uFE0F</span>' + // 👁️
-        '<span class="btn btn--edit" title="Edit">\u270F\uFE0F</span>'; // ✏️
+        '<span class="btn btn--view" title="View">\u25CE</span>' + // ◎ view
+        '<span class="btn btn--edit" title="Edit">\u270E</span>'; // ✎ edit
     }
 
     if (canOpenInVlc(entry.extension)) {
@@ -102,15 +102,15 @@ function createFileItem(entry: FileEntry, currentPath: string): HTMLElement {
       actionsHtml +=
         '<a href="' +
         escapeHtml(vlcUrl) +
-        '" class="btn btn--vlc" title="Open in VLC">\u25B6\uFE0F</a>'; // ▶️
+        '" class="btn btn--vlc" title="Open in VLC">\u25B6</a>'; // ▶
     }
 
-    actionsHtml += '<span class="btn btn--delete" title="Delete">\uD83D\uDDD1\uFE0F</span>'; // 🗑️
+    actionsHtml += '<span class="btn btn--delete" title="Delete">\u2716</span>'; // ✖
     actionsHtml += '</div>';
   } else {
     // Directory: just a delete button
     actionsHtml = '<div class="file-item__actions">';
-    actionsHtml += '<span class="btn btn--delete" title="Delete">\uD83D\uDDD1\uFE0F</span>';
+    actionsHtml += '<span class="btn btn--delete" title="Delete">\u2716</span>';
     actionsHtml += '</div>';
   }
 

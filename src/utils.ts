@@ -51,18 +51,18 @@ function inList(value: string, list: string[]): boolean {
 
 /** Return an emoji icon for a file entry based on its type / extension. */
 export function getFileIcon(entry: { type: string; extension: string | null }): string {
-  if (entry.type === 'directory') return '\uD83D\uDCC1'; // 📁
+  if (entry.type === 'directory') return '\u25A0'; // ■ folder
   const ext = entry.extension;
-  if (!ext) return '\uD83D\uDCC4'; // 📄
+  if (!ext) return '\u25A1'; // □ generic file
 
-  if (inList(ext, VIDEO_EXTENSIONS)) return '\uD83C\uDFAC'; // 🎬
-  if (inList(ext, AUDIO_EXTENSIONS)) return '\uD83C\uDFB5'; // 🎵
-  if (inList(ext, IMAGE_EXTENSIONS)) return '\uD83D\uDDBC\uFE0F'; // 🖼️
-  if (inList(ext, DOCUMENT_EXTENSIONS)) return '\uD83D\uDCDD'; // 📝
-  if (inList(ext, SPREADSHEET_EXTENSIONS)) return '\uD83D\uDCCA'; // 📊
-  if (inList(ext, ARCHIVE_EXTENSIONS)) return '\uD83D\uDCE6'; // 📦
-  if (inList(ext, CODE_EXTENSIONS)) return '\uD83D\uDCBB'; // 💻
-  return '\uD83D\uDCC4'; // 📄
+  if (inList(ext, VIDEO_EXTENSIONS)) return '\u25B6'; // ▶ video
+  if (inList(ext, AUDIO_EXTENSIONS)) return '\u266B'; // ♫ audio
+  if (inList(ext, IMAGE_EXTENSIONS)) return '\u2600'; // ☀ image
+  if (inList(ext, DOCUMENT_EXTENSIONS)) return '\u2261'; // ≡ document
+  if (inList(ext, SPREADSHEET_EXTENSIONS)) return '\u2637'; // ☷ spreadsheet
+  if (inList(ext, ARCHIVE_EXTENSIONS)) return '\u2338'; // ⌸ archive
+  if (inList(ext, CODE_EXTENSIONS)) return '\u2039\u203A'; // ‹› code
+  return '\u25A1'; // □ generic file
 }
 
 /** Check whether the extension belongs to a video file. */

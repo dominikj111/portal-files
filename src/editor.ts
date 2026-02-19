@@ -219,9 +219,9 @@ function buildOverlay(): HTMLElement {
     '<div class="editor-wrap">' +
       '<div class="editor-toolbar">' +
         '<div id="editor-title" class="editor-title"></div>' +
-        '<button id="editor-preview-toggle" class="editor-btn editor-btn--preview" style="display:none;" title="Toggle Preview">&#x1F440; Preview</button>' +
-        '<button id="editor-save" class="editor-btn editor-btn--save">&#x1F4BE; Save</button>' +
-        '<button id="editor-close" class="editor-btn editor-btn--close">&#x274C; Close</button>' +
+        '<button id="editor-preview-toggle" class="editor-btn editor-btn--preview" style="display:none;" title="Toggle Preview">&#x25CE; Preview</button>' +
+        '<button id="editor-save" class="editor-btn editor-btn--save">&#x2713; Save</button>' +
+        '<button id="editor-close" class="editor-btn editor-btn--close">&#x2716; Close</button>' +
       '</div>' +
       '<div id="editor-status" class="editor-status"></div>' +
       '<div class="editor-body">' +
@@ -241,7 +241,7 @@ function buildNewFileDialog(): HTMLElement {
 
   el.innerHTML =
     '<div class="editor-newfile-inner">' +
-      '<div style="color:#fff;font-size:1.1rem;margin-bottom:8px;">&#x1F4DD; New Text File</div>' +
+      '<div style="color:#fff;font-size:1.1rem;margin-bottom:8px;">&#x2261; New Text File</div>' +
       '<div id="editor-newfile-path" style="color:#888;font-size:12px;margin-bottom:4px;"></div>' +
       '<input type="text" id="editor-newfile-name" placeholder="filename.md" />' +
       '<div style="color:#888;font-size:11px;margin-bottom:12px;">' +
@@ -308,10 +308,10 @@ function doSave(): void {
 
   saveFile(currentFilePath, content, function (err) {
     if (err) {
-      setStatus('&#x274C; Save failed: ' + escapeText(err));
+      setStatus('&#x2716; Save failed: ' + escapeText(err));
       logError('Save failed: ' + currentFilePath + ' — ' + err);
     } else {
-      setStatus('&#x2705; Saved');
+      setStatus('&#x2713; Saved');
       logInfo('Saved file: ' + currentFilePath);
       requestRefreshDirectory();
     }
@@ -378,7 +378,7 @@ export function openEditor(filePath: string, fileName: string): void {
 
   readFile(filePath, function (err, content) {
     if (err) {
-      setStatus('&#x274C; Failed to load: ' + escapeText(err));
+      setStatus('&#x2716; Failed to load: ' + escapeText(err));
       logError('Read failed: ' + filePath + ' — ' + err);
     } else {
       if (textarea) textarea.value = content || '';

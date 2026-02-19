@@ -21,6 +21,12 @@ function request<T>(method: string, url: string, body?: unknown): Promise<T> {
       xhr.setRequestHeader('Content-Type', 'application/json');
     }
 
+    // Prevent IE11 from caching GET responses
+    if (!body && method === 'GET') {
+      xhr.setRequestHeader('Cache-Control', 'no-cache');
+      xhr.setRequestHeader('Pragma', 'no-cache');
+    }
+
     xhr.onreadystatechange = function () {
       if (xhr.readyState !== 4) return;
 

@@ -21,7 +21,7 @@ function createPanel(): void {
   // Toggle button — fixed in the bottom-right corner
   const toggleBtn = document.createElement('div');
   toggleBtn.id = 'debug-toggle';
-  toggleBtn.innerHTML = '&#x1F41B;'; // 🐛
+  toggleBtn.innerHTML = '&#x2622;'; // ☢ debug
   toggleBtn.setAttribute(
     'style',
     'position:fixed;bottom:10px;right:10px;width:44px;height:44px;' +
