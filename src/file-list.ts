@@ -105,12 +105,12 @@ function createFileItem(entry: FileEntry, currentPath: string): HTMLElement {
         '" class="btn btn--vlc" title="Open in VLC">\u25B6</a>'; // ▶
     }
 
-    actionsHtml += '<span class="btn btn--delete" title="Delete">\u2716</span>'; // ✖
+    // actionsHtml += '<span class="btn btn--delete" title="Delete">\u2716</span>'; // ✖
     actionsHtml += '</div>';
   } else {
     // Directory: just a delete button
     actionsHtml = '<div class="file-item__actions">';
-    actionsHtml += '<span class="btn btn--delete" title="Delete">\u2716</span>';
+    // actionsHtml += '<span class="btn btn--delete" title="Delete">\u2716</span>';
     actionsHtml += '</div>';
   }
 
